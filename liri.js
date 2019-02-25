@@ -51,7 +51,7 @@ function myBands(termSelect){
     console.log("Location: " + response.data[1].venue.city);
     
 
-    console.log(moment(response.data[1].datetime).format("MM-DD-YYYY"));
+    console.log("Date: " + moment(response.data[1].datetime).format("MM-DD-YYYY"));
     
 });
 }
