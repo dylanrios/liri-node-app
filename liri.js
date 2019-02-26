@@ -8,7 +8,7 @@ var moment = require("moment");
 var spotifyInfo = new spotifyRequire(keys.spotify);
 
 var appSelect = process.argv[2];
-var termSelect = process.argv[3];
+var termSelect = process.argv.slice(3).join(' ');
 
 
 //switch statement to determing which api to utilize, depending on user input!
@@ -59,6 +59,7 @@ function myBands(termSelect){
 //spotify api
 
   function mySpotify(termSelect) {
+      console.log(termSelect);
     spotifyInfo.search({type: 'track', query: termSelect, limit: '1'},function(err,data) {
           if (err) {
               console.log('Error: ' + err);
@@ -70,8 +71,10 @@ function myBands(termSelect){
               console.log("Link: " + JSON.stringify(data.tracks.items[0].album.external_urls));
           }
         
+        
           
       })
+    
     };
 
 
@@ -79,7 +82,7 @@ function myBands(termSelect){
 
 
   function myMovie(termSelect) {
-      var movieName = [];
+      
 
       if(termSelect != undefined){
         axios.get("http://www.omdbapi.com/?t=" + termSelect + "&apikey=853e1bbe").then(function(response){
